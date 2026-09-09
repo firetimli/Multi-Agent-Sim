@@ -1,0 +1,49 @@
+# RetailRocket -- user-level binary behaviour prediction.
+#
+# The label definition is deliberately config-driven so it can be changed later
+# without touching code: pick different positive_events, history_days or
+# horizon_days and the whole pipeline follows.
+name: retailrocket
+
+data:
+  source: csv                       # csv | synthetic
+  events_path: data/raw/retailrocket/events.csv
+  time_unit: ms                     # RetailRocket timestamps are epoch milliseconds
+  use_cache: true
+  columns:
+    user: visitorid
+    item: itemid
+    time: timestamp
+    event_type: event
+
+task:
+  # Positive = the user emits any of these events inside the horizon after the cutoff.
+  # Swap to [addtocart, transaction] for a denser "engagement" label.
+  positive_events: [transaction]
+  event_vocab: [view, addtocart, transaction]
+  history_days: 14                  # feature window before the cutoff
+  horizon_days: 7                   # label window after the cutoff
+  min_history_events: 1             # a user needs this many events to get a row
+  max_users_per_split: 50000        # uniform, seeded subsample; keeps iterations fast
+
+budget:
+  max_experiments: 10
+  patience: null                    # set an int to stop early after N non-improving runs
+
+run:
+  seed: 42
+
+agent:
+  backend: codex_cli                # codex_cli | mock
+  codex_cmd: ["codex", "exec", "--skip-git-repo-check", "-"]
+  timeout_seconds: 600
+  max_repair_attempts: 2            # schema repair rounds; these do NOT cost budget
+  critic_enabled: true
+  modeling_prompt: prompts/modeling.md
+  critic_prompt: prompts/critic.md
+
+paths:
+  interim_dir: data/interim
+  generated_dir: generated
+  runs_dir: runs
+  experiments_file: runs/experiments.jsonl

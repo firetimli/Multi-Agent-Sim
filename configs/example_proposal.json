@@ -1,0 +1,24 @@
+{
+  "parent_experiment": null,
+  "rationale": "Manual reference proposal used to verify the trusted path end to end: volume, recency, diversity and event-mix features with a lightly regularised booster.",
+  "features": [
+    {"name": "history_count", "parameters": {}},
+    {"name": "unique_item_count", "parameters": {}},
+    {"name": "time_since_last_event", "parameters": {}},
+    {"name": "mean_inter_event_time", "parameters": {}},
+    {"name": "recent_event_count", "parameters": {"window_days": 3.0}},
+    {"name": "item_repeat_ratio", "parameters": {}},
+    {"name": "session_length", "parameters": {"gap_minutes": 30.0}},
+    {"name": "event_type_counts", "parameters": {"normalize": false}}
+  ],
+  "model": {
+    "family": "lightgbm",
+    "hyperparameters": {
+      "learning_rate": 0.05,
+      "num_leaves": 31,
+      "n_estimators": 500,
+      "min_child_samples": 50,
+      "early_stopping_rounds": 50
+    }
+  }
+}

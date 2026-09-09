@@ -1,0 +1,49 @@
+# Synthetic, RetailRocket-shaped events -- for smoke tests only.
+# Identical schema and task formulation, generated in memory, runs in seconds.
+# Never report numbers from this config in the paper.
+name: synthetic
+
+data:
+  source: synthetic
+  time_unit: s
+  use_cache: true
+  columns:
+    user: visitorid
+    item: itemid
+    time: timestamp
+    event_type: event
+  synthetic:
+    n_users: 4000
+    n_items: 2000
+    days: 60
+    seed: 0
+
+task:
+  positive_events: [transaction]
+  event_vocab: [view, addtocart, transaction]
+  history_days: 14
+  horizon_days: 7
+  min_history_events: 1
+  max_users_per_split: 20000
+
+budget:
+  max_experiments: 3
+  patience: null
+
+run:
+  seed: 42
+
+agent:
+  backend: mock
+  codex_cmd: ["codex", "exec", "--skip-git-repo-check", "-"]
+  timeout_seconds: 600
+  max_repair_attempts: 2
+  critic_enabled: true
+  modeling_prompt: prompts/modeling.md
+  critic_prompt: prompts/critic.md
+
+paths:
+  interim_dir: data/interim
+  generated_dir: generated
+  runs_dir: runs
+  experiments_file: runs/experiments.jsonl

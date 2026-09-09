@@ -1,0 +1,11 @@
+# data and artifacts are never committed
+data/raw/
+data/interim/
+generated/
+runs/prompts/
+runs/responses/
+runs/run_configs/
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/

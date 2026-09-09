@@ -1,0 +1,46 @@
+{
+  "run_id": "synthetic__mock__s42__20260909T202544Z",
+  "dataset": "synthetic",
+  "backend": "mock",
+  "budget": {
+    "max_experiments": 3,
+    "used": 3,
+    "remaining": 0
+  },
+  "n_success": 3,
+  "n_failed": 0,
+  "best_experiment": "exp_001",
+  "best_val_auroc": 0.890998,
+  "best_proposal": {
+    "parent_experiment": null,
+    "rationale": "Start simple: cheap linear baseline on volume and recency features.",
+    "features": [
+      {
+        "name": "history_count",
+        "parameters": {}
+      },
+      {
+        "name": "time_since_last_event",
+        "parameters": {}
+      },
+      {
+        "name": "event_type_counts",
+        "parameters": {
+          "normalize": false
+        }
+      }
+    ],
+    "model": {
+      "family": "logistic_regression",
+      "hyperparameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 500
+      }
+    },
+    "proposal_hash": "fae0b8991c99198b"
+  },
+  "wall_clock_seconds": 0.5,
+  "backend_calls": 6,
+  "selection_rule": "max validation AUROC; test set never evaluated in v0"
+}

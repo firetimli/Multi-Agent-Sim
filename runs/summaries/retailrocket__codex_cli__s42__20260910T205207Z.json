@@ -1,0 +1,70 @@
+{
+  "run_id": "retailrocket__codex_cli__s42__20260910T205207Z",
+  "dataset": "retailrocket",
+  "backend": "codex_cli",
+  "budget": {
+    "max_experiments": 10,
+    "used": 10,
+    "remaining": 0
+  },
+  "n_success": 10,
+  "n_failed": 0,
+  "best_experiment": "exp_008",
+  "best_val_auroc": 0.913851,
+  "best_proposal": {
+    "parent_experiment": "exp_004",
+    "rationale": "Test a shorter 0.5-day recency window while retaining the best logistic-regression configuration, since the 3-day window degraded AUROC and short-term intensity may be more predictive.",
+    "features": [
+      {
+        "name": "history_count",
+        "parameters": {}
+      },
+      {
+        "name": "unique_item_count",
+        "parameters": {}
+      },
+      {
+        "name": "time_since_last_event",
+        "parameters": {}
+      },
+      {
+        "name": "mean_inter_event_time",
+        "parameters": {}
+      },
+      {
+        "name": "recent_event_count",
+        "parameters": {
+          "window_days": 0.5
+        }
+      },
+      {
+        "name": "item_repeat_ratio",
+        "parameters": {}
+      },
+      {
+        "name": "session_length",
+        "parameters": {
+          "gap_minutes": 30.0
+        }
+      },
+      {
+        "name": "event_type_counts",
+        "parameters": {
+          "normalize": false
+        }
+      }
+    ],
+    "model": {
+      "family": "logistic_regression",
+      "hyperparameters": {
+        "C": 0.03,
+        "class_weight": "balanced",
+        "max_iter": 500
+      }
+    },
+    "proposal_hash": "7e62acf7422f1cee"
+  },
+  "wall_clock_seconds": 311.6,
+  "backend_calls": 20,
+  "selection_rule": "max validation AUROC; test set never evaluated in v0"
+}

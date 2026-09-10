@@ -1,0 +1,12 @@
+experiment_id  status   family               n_features  train_auroc  val_auroc  val_auprc  val_f1  runtime_s
+-------------------------------------------------------------------------------------------------------------
+exp_008        success  logistic_regression  10          0.8909       0.9139     0.2150     0.4118  3.5100   
+exp_009        success  logistic_regression  10          0.8905       0.9113     0.2140     0.4118  3.3300   
+exp_004        success  logistic_regression  10          0.8885       0.9085     0.2020     0.4118  1.7500   
+exp_006        success  logistic_regression  10          0.8886       0.9085     0.2015     0.4118  1.3800   
+exp_005        success  logistic_regression  10          0.8876       0.9085     0.2027     0.4118  1.2100   
+exp_003        success  logistic_regression  10          0.8888       0.9084     0.2015     0.4118  1.1100   
+exp_001        success  logistic_regression  10          0.8890       0.9084     0.2013     0.4118  3.2000   
+exp_010        success  logistic_regression  10          0.8881       0.8985     0.2651     0.4375  2.8800   
+exp_007        success  logistic_regression  10          0.8881       0.8924     0.2009     0.3889  1.0100   
+exp_002        success  lightgbm             10          0.9039       0.8811     0.1253     0.2941  0.2900   
